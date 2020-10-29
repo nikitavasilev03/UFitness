@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">UFitness</string>
+    <string name="excercises">Упражнения</string>
+    <string name="trainings">Планы тренировок</string>
 </resources>
