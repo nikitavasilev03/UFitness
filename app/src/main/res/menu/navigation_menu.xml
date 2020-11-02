@@ -5,5 +5,7 @@
             android:title="@string/excercises"/>
         <item
             android:title="@string/trainings"/>
+        <item
+            android:title="@string/support"/>
     </group>
 </menu>
