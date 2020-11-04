@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">UFitness</string>
+    <string name="excercises">Упражнения</string>
+    <string name="trainings">Планы тренировок</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="support">Сопровождение</string>
+    <string name="plans_hint">Здесь будут отображены ваши тренировочные комплексы</string>
 </resources>
