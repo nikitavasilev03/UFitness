@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.android.ufitness.MyApplication
 import com.example.android.ufitness.R
 import com.example.android.ufitness.models.Plan
+import kotlinx.android.synthetic.main.fragment_main.*
 import javax.inject.Inject
 
 class MainFragment : Fragment() {
@@ -38,6 +39,22 @@ class MainFragment : Fragment() {
                 deleteClick = ::deleteClick,
                 updateClick = ::updateClick
         )
+        plansRecycler.apply {
+            adapter=plansAdapter
+        }
+        initObservers()
+    }
+
+    private fun initObservers(){
+        viewModel.plansLiveData.observe(viewLifecycleOwner) {
+            if(!it.isNullOrEmpty()){
+                plansAdapter.submit(it)
+                tvHint.visibility = View.GONE
+            } else {
+                plansRecycler.visibility = View.GONE
+                tvHint.visibility = View.VISIBLE
+            }
+        }
     }
 
     private fun supportClick(plan: Plan) {

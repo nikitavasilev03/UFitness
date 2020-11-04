@@ -7,17 +7,17 @@ import com.example.android.ufitness.models.Plan
 interface PlanDao {
 
     @Insert
-    fun insert(exercises: List<Plan>)
+    suspend fun insert(plans: List<Plan>)
 
     @Query("SELECT * FROM plans")
-    fun getAll(): List<Plan>
+    suspend fun getAll(): List<Plan>
 
     @Query("DELETE FROM plans")
-    fun deleteAll()
+    suspend fun deleteAll()
 
     @Delete
-    fun deletePlan(plan: Plan)
+    suspend fun deletePlan(plan: Plan)
 
     @Update
-    fun updatePlan(plan: Plan)
+    suspend fun updatePlan(plan: Plan)
 }
