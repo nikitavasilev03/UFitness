@@ -1,4 +1,4 @@
-package com.example.android.ufitness.ui.fragments
+package com.example.android.ufitness.ui.fragments.main
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

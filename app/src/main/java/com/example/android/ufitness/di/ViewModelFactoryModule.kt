@@ -2,9 +2,9 @@ package com.example.android.ufitness.di
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.android.ufitness.ui.fragments.MainFViewModel
-import com.example.android.ufitness.utils.ViewModelKey
-import com.example.android.ufitness.utils.ViewModelProviderFactory
+import com.example.android.ufitness.ui.fragments.main.MainFViewModel
+import com.example.android.ufitness.utils.vm.ViewModelKey
+import com.example.android.ufitness.utils.vm.ViewModelProviderFactory
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -18,6 +18,6 @@ abstract class ViewModelFactoryModule {
     @Binds
     @IntoMap
     @ViewModelKey(MainFViewModel::class)
-    abstract fun bindsMainFViewModel(viewModel:MainFViewModel): ViewModel
+    abstract fun bindsMainFViewModel(viewModel: MainFViewModel): ViewModel
 
 }
