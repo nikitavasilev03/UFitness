@@ -22,9 +22,6 @@ class MainFViewModel @Inject constructor(val dataSource: DataSource): ViewModel(
 
     init {
         viewModelScope.launch {
-            val initialPlans = mutableListOf<Plan>()
-            initialPlans.add(Plan(name = "Растяжка", purpose = "Комплекс упражнений для растяжки мышц"))
-            dao.insert(initialPlans)
             plans = dao.getAll()
         }
     }

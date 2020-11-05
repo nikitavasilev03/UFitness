@@ -36,8 +36,6 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         plansAdapter = PlansAdapter(
                 supportClick = ::supportClick,
-                deleteClick = ::deleteClick,
-                updateClick = ::updateClick
         )
         plansRecycler.apply {
             adapter=plansAdapter
@@ -60,14 +58,4 @@ class MainFragment : Fragment() {
     private fun supportClick(plan: Plan) {
 
     }
-
-    private fun deleteClick(plan: Plan) {
-
-    }
-
-    private fun updateClick(plan: Plan) {
-
-    }
-
-
 }

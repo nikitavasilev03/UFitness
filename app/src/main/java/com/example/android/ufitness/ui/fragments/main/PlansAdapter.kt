@@ -8,8 +8,6 @@ import com.example.android.ufitness.models.Plan
 import kotlinx.android.synthetic.main.item_plan.view.*
 
 class PlansAdapter(
-        private val deleteClick: (model: Plan) -> Unit,
-        private val updateClick: (model: Plan) -> Unit,
         private val supportClick: (model: Plan) -> Unit
 ) : RecyclerAdapter<Plan>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BindingHolder<Plan> {
@@ -21,12 +19,6 @@ class PlansAdapter(
                 view.tvPlanDesc.text = model.purpose
                 view.ivSupport.setOnClickListener {
                     supportClick.invoke(model)
-                }
-                view.ivUpdate.setOnClickListener {
-                    updateClick.invoke(model)
-                }
-                view.ivDelete.setOnClickListener {
-                    deleteClick.invoke(model)
                 }
             }
         }
