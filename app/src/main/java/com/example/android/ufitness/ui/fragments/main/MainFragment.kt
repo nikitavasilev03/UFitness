@@ -1,4 +1,4 @@
-package com.example.android.ufitness.ui.fragments
+package com.example.android.ufitness.ui.fragments.main
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

@@ -6,4 +6,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="support">Сопровождение</string>
     <string name="plans_hint">Здесь будут отображены ваши тренировочные комплексы</string>
+    <string name="type_your_name">Введите свое имя</string>
+    <string name="info_hint">Приложение запомнит ваше имя и будет использовать его при отправке данных в мессенджеры</string>
+    <string name="Confirm">Подтвердить</string>
 </resources>

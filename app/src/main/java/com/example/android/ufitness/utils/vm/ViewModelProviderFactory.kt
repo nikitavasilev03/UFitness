@@ -1,4 +1,4 @@
-package com.example.android.ufitness.utils
+package com.example.android.ufitness.utils.vm
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

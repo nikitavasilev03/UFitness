@@ -9,6 +9,8 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.android.ufitness.R
+import com.example.android.ufitness.ui.fragments.InfoFragment
+import com.example.android.ufitness.utils.SharedPreferencesUtils
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 
@@ -23,6 +25,11 @@ class MainActivity : AppCompatActivity() {
         appBarConfiguration = AppBarConfiguration(navController.graph,drawerLayout)
         navigationView.setupWithNavController(navController)
         setupActionBarWithNavController(navController,appBarConfiguration)
+
+        val info = SharedPreferencesUtils.getString(this,SharedPreferencesUtils.INFO_KEY)
+        if (info == null){
+            InfoFragment().show(supportFragmentManager,null)
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {
