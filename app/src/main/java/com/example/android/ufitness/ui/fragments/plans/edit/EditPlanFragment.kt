@@ -11,7 +11,9 @@ import androidx.navigation.fragment.findNavController
 import com.example.android.ufitness.MyApplication
 import com.example.android.ufitness.R
 import com.example.android.ufitness.models.Plan
+import com.example.android.ufitness.ui.fragments.exercises.ExercisesAdapter
 import kotlinx.android.synthetic.main.fragment_edit_plan.*
+import kotlinx.android.synthetic.main.fragment_exercises.*
 import javax.inject.Inject
 
 class EditPlanFragment : Fragment() {
@@ -19,6 +21,7 @@ class EditPlanFragment : Fragment() {
     @Inject
     lateinit var providerFactory: ViewModelProvider.Factory
     lateinit var viewModel: EditPlanViewModel
+    lateinit var exercisesAdapter: EditPlanExercisesAdapter
 
     private var plan: Plan? = null
 
@@ -42,11 +45,19 @@ class EditPlanFragment : Fragment() {
             etPlanName.setText(it.name)
             etPlanPurpose.setText(it.purpose)
         }
+
+        exercisesAdapter = EditPlanExercisesAdapter(
+            onChangeCheck = viewModel::manageExercise
+        )
+        exercisesCheckRecycler.apply {
+            adapter = exercisesAdapter
+        }
+
         btnPlanSave.setOnClickListener {
             val name = etPlanName.text.toString()
             val purpose = etPlanPurpose.text.toString()
             if (!name.isBlank() || !purpose.isBlank()) {
-                viewModel.manageExercise(plan, name, purpose)
+                viewModel.managePlan(plan, name, purpose)
             } else {
                 Toast.makeText(
                     view.context,
@@ -58,10 +69,26 @@ class EditPlanFragment : Fragment() {
         observeLiveData()
     }
 
+    override fun onResume() {
+        super.onResume()
+        viewModel.fetchData()
+    }
+
+
     private fun observeLiveData() {
         viewModel.editCompleteLiveData.observe(viewLifecycleOwner) {
             if (it)
                 findNavController().navigateUp()
+        }
+        viewModel.exercisesLiveData.observe(viewLifecycleOwner) {
+            if (!it.isNullOrEmpty()) {
+                exercisesCheckRecycler.visibility = View.VISIBLE
+                exercisesAdapter.submit(it)
+                //tvHint.visibility = View.GONE
+            } else {
+                exercisesCheckRecycler.visibility = View.GONE
+                //tvHint.visibility = View.VISIBLE
+            }
         }
     }
 
