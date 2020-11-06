@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.android.ufitness.ui.fragments.exercises.ExercisesViewModel
 import com.example.android.ufitness.ui.fragments.exercises.edit.EditExerciseViewModel
 import com.example.android.ufitness.ui.fragments.main.MainFViewModel
+import com.example.android.ufitness.ui.fragments.plans.PlansViewModel
 import com.example.android.ufitness.utils.vm.ViewModelKey
 import com.example.android.ufitness.utils.vm.ViewModelProviderFactory
 import dagger.Binds
@@ -19,8 +20,8 @@ abstract class ViewModelFactoryModule {
 
     @Binds
     @IntoMap
-    @ViewModelKey(MainFViewModel::class)
-    abstract fun bindsMainFViewModel(viewModel: MainFViewModel): ViewModel
+    @ViewModelKey(PlansViewModel::class)
+    abstract fun bindsPlansViewModel(viewModel: PlansViewModel): ViewModel
 
     @Binds
     @IntoMap
