@@ -44,9 +44,9 @@
     </fragment>
     <fragment
         android:id="@+id/editPlanFragment"
-        android:name="com.example.android.ufitness.ui.fragments.exercises.edit.EditExerciseFragment"
+        android:name="com.example.android.ufitness.ui.fragments.plans.edit.EditPlanFragment"
         android:label="Планы тренировок"
-        tools:layout="@layout/fragment_edit_plans">
+        tools:layout="@layout/fragment_edit_plan">
         <argument
             android:name="plan"
             app:argType="com.example.android.ufitness.models.Plan"/>

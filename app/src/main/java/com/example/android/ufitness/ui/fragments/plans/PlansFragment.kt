@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.android.ufitness.MyApplication
 import com.example.android.ufitness.R
 import com.example.android.ufitness.models.Plan
+import com.example.android.ufitness.ui.fragments.plans.edit.EditPlanFragment
 import kotlinx.android.synthetic.main.fragment_plans.*
 import javax.inject.Inject
 
@@ -67,8 +68,8 @@ class PlansFragment: Fragment() {
     }
 
     private fun onUpdateClicked(plan: Plan) {
-//        findNavController().navigate(
-//            R.id.action_plansFragment_to_editPlanFragment,
-//            Bundle().apply { putParcelable(EditExerciseFragment.EXERCISE_KEY, plan) })
+        findNavController().navigate(
+            R.id.action_plansFragment_to_editPlanFragment,
+            Bundle().apply { putParcelable(EditPlanFragment.PLAN_KEY, plan) })
     }
 }
