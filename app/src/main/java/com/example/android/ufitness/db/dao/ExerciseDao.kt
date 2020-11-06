@@ -7,17 +7,17 @@ import com.example.android.ufitness.models.Exercise
 interface ExerciseDao {
 
     @Insert
-    fun insert(exercises: List<Exercise>)
+    suspend fun insert(exercises: List<Exercise>)
 
     @Query("SELECT * FROM exercises")
-    fun getAll(): List<Exercise>
+    suspend fun getAll(): List<Exercise>
 
     @Query("DELETE FROM exercises")
-    fun deleteAll()
+    suspend fun deleteAll()
 
     @Delete
-    fun deleteExercise(exercise: Exercise)
+    suspend fun deleteExercise(exercise: Exercise)
 
     @Update
-    fun updateExrecise(exercise: Exercise)
+    suspend fun updateExercise(exercise: Exercise)
 }

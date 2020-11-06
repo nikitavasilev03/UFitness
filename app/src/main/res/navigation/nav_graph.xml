@@ -8,6 +8,15 @@
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.example.android.ufitness.ui.fragments.main.MainFragment"
-        android:label="fragment_main"
-        tools:layout="@layout/fragment_main" />
+        android:label="Тренировки"
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_mainFragment_to_exercisesFragment"
+            app:destination="@id/exercisesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/exercisesFragment"
+        android:name="com.example.android.ufitness.ui.fragments.exercises.ExercisesFragment"
+        android:label="Упражнения"
+        tools:layout="@layout/fragment_exercises" />
 </navigation>

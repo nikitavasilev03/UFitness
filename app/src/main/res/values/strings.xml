@@ -9,4 +9,5 @@
     <string name="type_your_name">Введите свое имя</string>
     <string name="info_hint">Приложение запомнит ваше имя и будет использовать его при отправке данных в мессенджеры</string>
     <string name="Confirm">Подтвердить</string>
+    <string name="exercises_hint">Здесь будут ваши упражнения</string>
 </resources>

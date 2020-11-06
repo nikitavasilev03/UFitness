@@ -46,6 +46,7 @@ class MainFragment : Fragment() {
     private fun initObservers(){
         viewModel.plansLiveData.observe(viewLifecycleOwner) {
             if(!it.isNullOrEmpty()){
+                plansRecycler.visibility = View.VISIBLE
                 plansAdapter.submit(it)
                 tvHint.visibility = View.GONE
             } else {

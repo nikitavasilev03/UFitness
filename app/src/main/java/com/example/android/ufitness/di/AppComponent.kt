@@ -1,5 +1,6 @@
 package com.example.android.ufitness.di
 
+import com.example.android.ufitness.ui.fragments.exercises.ExercisesFragment
 import com.example.android.ufitness.ui.fragments.main.MainFragment
 import dagger.Component
 import javax.inject.Singleton
@@ -9,4 +10,5 @@ import javax.inject.Singleton
 interface AppComponent {
 
     fun inject(fragment: MainFragment)
+    fun inject(fragment: ExercisesFragment)
 }
