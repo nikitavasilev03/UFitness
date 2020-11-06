@@ -10,4 +10,7 @@
     <string name="info_hint">Приложение запомнит ваше имя и будет использовать его при отправке данных в мессенджеры</string>
     <string name="Confirm">Подтвердить</string>
     <string name="exercises_hint">Здесь будут ваши упражнения</string>
+    <string name="exercise_name">Название упражнения</string>
+    <string name="exercise_desc">Описание упражнения</string>
+    <string name="save">Сохранить</string>
 </resources>

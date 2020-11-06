@@ -23,6 +23,11 @@ class ExercisesViewModel @Inject constructor(val dataSource: DataSource): ViewMo
     fun deleteExercise(exercise: Exercise){
         viewModelScope.launch {
             dao.deleteExercise(exercise)
+            exercisesLiveData.value = dao.getAll()
         }
+    }
+
+    fun fetchData() = viewModelScope.launch {
+        exercisesLiveData.value = dao.getAll()
     }
 }

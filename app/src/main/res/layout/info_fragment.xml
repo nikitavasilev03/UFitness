@@ -39,7 +39,7 @@
             android:layout_width="300dp"
             android:layout_height="40dp"
             android:layout_marginTop="16dp"
-            android:background="@drawable/text_feild"
+            android:background="@drawable/text_field"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvHint" />
@@ -52,7 +52,7 @@
             android:background="@drawable/ripple_rounded_btn"
             android:text="@string/Confirm"
             android:textAllCaps="false"
-            app:backgroundTint="#00B956"
+            app:backgroundTint="@color/green"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
