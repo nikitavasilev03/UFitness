@@ -6,9 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.android.ufitness.MyApplication
 import com.example.android.ufitness.R
 import com.example.android.ufitness.models.Exercise
+import com.example.android.ufitness.ui.fragments.exercises.edit.EditExerciseFragment
 import kotlinx.android.synthetic.main.fragment_exercises.*
 import javax.inject.Inject
 
@@ -42,14 +44,19 @@ class ExercisesFragment : Fragment() {
             adapter = exercisesAdapter
         }
         fabAdd.setOnClickListener {
-
+            findNavController().navigate(R.id.action_exercisesFragment_to_editExerciseFragment)
         }
-        observeLivedata()
+        observeLiveData()
     }
 
-    private fun observeLivedata(){
-        viewModel.exercisesLiveData.observe(viewLifecycleOwner){
-            if (!it.isNullOrEmpty()){
+    override fun onResume() {
+        super.onResume()
+        viewModel.fetchData()
+    }
+
+    private fun observeLiveData() {
+        viewModel.exercisesLiveData.observe(viewLifecycleOwner) {
+            if (!it.isNullOrEmpty()) {
                 exercisesRecycler.visibility = View.VISIBLE
                 exercisesAdapter.submit(it)
                 tvHint.visibility = View.GONE
@@ -60,7 +67,9 @@ class ExercisesFragment : Fragment() {
         }
     }
 
-    private fun onUpdateClicked(exercise: Exercise){
-
+    private fun onUpdateClicked(exercise: Exercise) {
+        findNavController().navigate(
+            R.id.action_exercisesFragment_to_editExerciseFragment,
+            Bundle().apply { putParcelable(EditExerciseFragment.EXERCISE_KEY, exercise) })
     }
 }
