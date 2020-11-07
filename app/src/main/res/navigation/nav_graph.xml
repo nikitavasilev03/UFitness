@@ -3,17 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/plansFragment">
+    app:startDestination="@id/mainFragment">
 
-<!--    <fragment-->
-<!--        android:id="@+id/mainFragment"-->
-<!--        android:name="com.example.android.ufitness.ui.fragments.main.MainFragment"-->
-<!--        android:label="Тренировки"-->
-<!--        tools:layout="@layout/fragment_main" >-->
-<!--        <action-->
-<!--            android:id="@+id/action_mainFragment_to_exercisesFragment"-->
-<!--            app:destination="@id/exercisesFragment" />-->
-<!--    </fragment>-->
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.example.android.ufitness.ui.fragments.main.MainFragment"
+        android:label="Тренировки"
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_mainFragment_to_exercisesFragment"
+            app:destination="@id/exercisesFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/exercisesFragment"
@@ -24,15 +24,17 @@
             android:id="@+id/action_exercisesFragment_to_editExerciseFragment"
             app:destination="@id/editExerciseFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/editExerciseFragment"
         android:name="com.example.android.ufitness.ui.fragments.exercises.edit.EditExerciseFragment"
         android:label="Упражнение"
         tools:layout="@layout/fragment_edit_exercise">
-            <argument
-                android:name="exercise"
-                app:argType="com.example.android.ufitness.models.Exercise"/>
+        <argument
+            android:name="exercise"
+            app:argType="com.example.android.ufitness.models.Exercise"/>
     </fragment>
+
     <fragment
         android:id="@+id/plansFragment"
         android:name="com.example.android.ufitness.ui.fragments.plans.PlansFragment"
@@ -42,6 +44,7 @@
             android:id="@+id/action_plansFragment_to_editPlanFragment"
             app:destination="@id/editPlanFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/editPlanFragment"
         android:name="com.example.android.ufitness.ui.fragments.plans.edit.EditPlanFragment"
@@ -51,4 +54,5 @@
             android:name="plan"
             app:argType="com.example.android.ufitness.models.Plan"/>
     </fragment>
+
 </navigation>

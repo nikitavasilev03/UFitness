@@ -21,6 +21,11 @@ abstract class ViewModelFactoryModule {
 
     @Binds
     @IntoMap
+    @ViewModelKey(MainFViewModel::class)
+    abstract fun bindsMainFViewModel(viewModel: MainFViewModel): ViewModel
+
+    @Binds
+    @IntoMap
     @ViewModelKey(PlansViewModel::class)
     abstract fun bindsPlansViewModel(viewModel: PlansViewModel): ViewModel
 

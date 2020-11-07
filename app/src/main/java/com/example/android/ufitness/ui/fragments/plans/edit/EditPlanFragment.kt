@@ -11,9 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.android.ufitness.MyApplication
 import com.example.android.ufitness.R
 import com.example.android.ufitness.models.Plan
-import com.example.android.ufitness.ui.fragments.exercises.ExercisesAdapter
 import kotlinx.android.synthetic.main.fragment_edit_plan.*
-import kotlinx.android.synthetic.main.fragment_exercises.*
 import javax.inject.Inject
 
 class EditPlanFragment : Fragment() {
