@@ -42,6 +42,7 @@ class EditExerciseFragment : Fragment() {
             etExerciseName.setText(it.name)
             etDesc.setText(it.description)
         }
+
         btnSave.setOnClickListener {
             val name = etExerciseName.text.toString()
             val desc = etDesc.text.toString()

@@ -5,8 +5,9 @@
             android:id="@id/exercisesFragment"
             android:title="@string/excercises"/>
         <item
+            android:id="@id/plansFragment"
             android:title="@string/trainings"/>
-        <item
-            android:title="@string/support"/>
+<!--        <item-->
+<!--            android:title="@string/support"/>-->
     </group>
 </menu>

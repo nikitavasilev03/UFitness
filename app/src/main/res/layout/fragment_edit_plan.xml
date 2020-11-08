@@ -2,10 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.fragments.exercises.edit.EditExerciseFragment">
+    android:layout_height="match_parent">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
@@ -27,12 +25,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="@string/exercise_name"
+        android:text="@string/plan_name"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/appBarLayout" />
 
     <EditText
-        android:id="@+id/etExerciseName"
+        android:id="@+id/etPlanName"
         android:layout_width="0dp"
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
@@ -51,12 +49,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="20dp"
-        android:text="@string/exercise_desc"
+        android:text="@string/plan_purpose"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/etExerciseName" />
+        app:layout_constraintTop_toBottomOf="@id/etPlanName" />
 
     <EditText
-        android:id="@+id/etDesc"
+        android:id="@+id/etPlanPurpose"
         android:layout_width="0dp"
         android:layout_height="200dp"
         android:layout_marginStart="16dp"
@@ -71,7 +69,7 @@
         app:layout_constraintTop_toBottomOf="@id/tvDescLabel" />
 
     <Button
-        android:id="@+id/btnSave"
+        android:id="@+id/btnPlanSave"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
@@ -83,7 +81,28 @@
         app:backgroundTint="@color/green"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/etDesc" />
+        app:layout_constraintTop_toBottomOf="@id/etPlanPurpose" />
+
+    <TextView
+        android:id="@+id/tvExercisesLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/plan_exercises"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnPlanSave" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/exercisesCheckRecycler"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvExercisesLabel" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -18,7 +18,6 @@ class EditExerciseViewModel @Inject constructor(private val dataSource: DataSour
         dao.insert(listOf(exercise))
     }
 
-
     private fun updateExercise(exercise: Exercise) = viewModelScope.launch {
         dao.updateExercise(exercise)
     }

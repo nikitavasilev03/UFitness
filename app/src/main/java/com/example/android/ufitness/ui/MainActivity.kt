@@ -22,9 +22,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
         navController = findNavController(R.id.nav_host_fragment)
-        appBarConfiguration = AppBarConfiguration(navController.graph,drawerLayout)
+        appBarConfiguration = AppBarConfiguration(navController.graph, drawerLayout)
         navigationView.setupWithNavController(navController)
-        setupActionBarWithNavController(navController,appBarConfiguration)
+        setupActionBarWithNavController(navController, appBarConfiguration)
 
         val info = SharedPreferencesUtils.getString(this,SharedPreferencesUtils.INFO_KEY)
         if (info == null){

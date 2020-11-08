@@ -14,6 +14,7 @@
             android:id="@+id/action_mainFragment_to_exercisesFragment"
             app:destination="@id/exercisesFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/exercisesFragment"
         android:name="com.example.android.ufitness.ui.fragments.exercises.ExercisesFragment"
@@ -23,13 +24,35 @@
             android:id="@+id/action_exercisesFragment_to_editExerciseFragment"
             app:destination="@id/editExerciseFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/editExerciseFragment"
         android:name="com.example.android.ufitness.ui.fragments.exercises.edit.EditExerciseFragment"
         android:label="Упражнение"
         tools:layout="@layout/fragment_edit_exercise">
-            <argument
-                android:name="exercise"
-                app:argType="com.example.android.ufitness.models.Exercise"/>
+        <argument
+            android:name="exercise"
+            app:argType="com.example.android.ufitness.models.Exercise"/>
     </fragment>
+
+    <fragment
+        android:id="@+id/plansFragment"
+        android:name="com.example.android.ufitness.ui.fragments.plans.PlansFragment"
+        android:label="Планы тренировок"
+        tools:layout="@layout/fragment_plans" >
+        <action
+            android:id="@+id/action_plansFragment_to_editPlanFragment"
+            app:destination="@id/editPlanFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/editPlanFragment"
+        android:name="com.example.android.ufitness.ui.fragments.plans.edit.EditPlanFragment"
+        android:label="Планы тренировок"
+        tools:layout="@layout/fragment_edit_plan">
+        <argument
+            android:name="plan"
+            app:argType="com.example.android.ufitness.models.Plan"/>
+    </fragment>
+
 </navigation>

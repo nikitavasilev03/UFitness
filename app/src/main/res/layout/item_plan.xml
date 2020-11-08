@@ -30,7 +30,7 @@
             android:layout_marginStart="8dp"
             android:maxLines="1"
             android:layout_marginEnd="8dp"
-            app:layout_constraintEnd_toStartOf="@id/ivSupport"
+            app:layout_constraintEnd_toStartOf="@id/ivUpdate"
             app:layout_constraintStart_toEndOf="@id/ivPicture"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -40,18 +40,29 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            app:layout_constraintEnd_toStartOf="@id/ivSupport"
+            app:layout_constraintEnd_toStartOf="@id/ivUpdate"
             android:layout_marginEnd="8dp"
             app:layout_constraintStart_toEndOf="@id/ivPicture"
             app:layout_constraintTop_toBottomOf="@id/tvTitle" />
 
         <ImageView
-            android:id="@+id/ivSupport"
+            android:id="@+id/ivUpdate"
             android:layout_width="33dp"
             android:layout_height="33dp"
+            android:src="@drawable/ic_baseline_autorenew_24"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toStartOf="@id/ivDelete"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:src="@drawable/ic_baseline_play_arrow_24"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <ImageView
+            android:id="@+id/ivDelete"
+            android:layout_width="33dp"
+            android:layout_height="33dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/ic_baseline_cancel_24"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
 

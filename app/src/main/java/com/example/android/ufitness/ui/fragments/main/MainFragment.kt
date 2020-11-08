@@ -17,7 +17,7 @@ class MainFragment : Fragment() {
     @Inject
     lateinit var providerFactory: ViewModelProvider.Factory
     lateinit var viewModel: MainFViewModel
-    lateinit var plansAdapter: PlansAdapter
+    lateinit var plansAdapter: MainPlansAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,11 +34,11 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        plansAdapter = PlansAdapter(
-                supportClick = ::supportClick,
+        plansAdapter = MainPlansAdapter(
+            supportClick = ::supportClick,
         )
         plansRecycler.apply {
-            adapter=plansAdapter
+            adapter = plansAdapter
         }
         initObservers()
     }
