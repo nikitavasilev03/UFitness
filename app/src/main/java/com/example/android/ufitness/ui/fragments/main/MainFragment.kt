@@ -43,6 +43,11 @@ class MainFragment : Fragment() {
         initObservers()
     }
 
+    override fun onResume() {
+        super.onResume()
+        viewModel.loadPlans()
+    }
+
     private fun initObservers(){
         viewModel.plansLiveData.observe(viewLifecycleOwner) {
             if(!it.isNullOrEmpty()){

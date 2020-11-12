@@ -25,4 +25,8 @@ class MainFViewModel @Inject constructor(val dataSource: DataSource): ViewModel(
             plans = dao.getAll()
         }
     }
+
+    fun loadPlans() = viewModelScope.launch {
+        plans = dao.getAll()
+    }
 }
