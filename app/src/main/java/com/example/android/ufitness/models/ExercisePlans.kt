@@ -7,10 +7,12 @@ import androidx.room.PrimaryKey
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-@Entity(tableName = "plans")
-data class Plan(
+@Entity(tableName = "exercisePlans")
+data class ExercisePlans(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id") val id: Int? = null,
-    @ColumnInfo(name = "name") val name: String,
-    @ColumnInfo(name = "purpose") val purpose: String
+    @ColumnInfo(name = "exerciseId") val exerciseId: Int,
+    @ColumnInfo(name = "planId") val planId: Int,
+    @ColumnInfo(name = "isTimeBased") val isTimeBased: Boolean,
+    @ColumnInfo(name = "repeatCount") val repeatCount: Int
 ) : Parcelable

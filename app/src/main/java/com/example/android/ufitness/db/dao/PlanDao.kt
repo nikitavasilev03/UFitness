@@ -20,4 +20,7 @@ interface PlanDao {
 
     @Update
     suspend fun updatePlan(plan: Plan)
+
+    @Query("SELECT id FROM plans WHERE name = :name")
+    suspend fun getPlanIdByName(name: String): List<Int?>
 }
