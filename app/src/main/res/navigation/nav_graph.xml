@@ -9,17 +9,24 @@
         android:id="@+id/mainFragment"
         android:name="com.example.android.ufitness.ui.fragments.main.MainFragment"
         android:label="Тренировки"
-        tools:layout="@layout/fragment_main" >
+        tools:layout="@layout/fragment_main">
+
         <action
             android:id="@+id/action_mainFragment_to_exercisesFragment"
             app:destination="@id/exercisesFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_plansFragment"
+            app:destination="@id/plansFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_supportFragment"
+            app:destination="@id/supportFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/exercisesFragment"
         android:name="com.example.android.ufitness.ui.fragments.exercises.ExercisesFragment"
         android:label="Упражнения"
-        tools:layout="@layout/fragment_exercises" >
+        tools:layout="@layout/fragment_exercises">
         <action
             android:id="@+id/action_exercisesFragment_to_editExerciseFragment"
             app:destination="@id/editExerciseFragment" />
@@ -32,17 +39,18 @@
         tools:layout="@layout/fragment_edit_exercise">
         <argument
             android:name="exercise"
-            app:argType="com.example.android.ufitness.models.Exercise"/>
+            app:argType="com.example.android.ufitness.models.Exercise" />
     </fragment>
 
     <fragment
         android:id="@+id/plansFragment"
         android:name="com.example.android.ufitness.ui.fragments.plans.PlansFragment"
         android:label="Планы тренировок"
-        tools:layout="@layout/fragment_plans" >
+        tools:layout="@layout/fragment_plans">
         <action
             android:id="@+id/action_plansFragment_to_editPlanFragment"
             app:destination="@id/editPlanFragment" />
+
     </fragment>
 
     <fragment
@@ -52,7 +60,20 @@
         tools:layout="@layout/fragment_edit_plan">
         <argument
             android:name="plan"
-            app:argType="com.example.android.ufitness.models.Plan"/>
+            app:argType="com.example.android.ufitness.models.Plan" />
+    </fragment>
+    <fragment
+        android:id="@+id/supportFragment"
+        android:name="com.example.android.ufitness.ui.fragments.support.SupportFragment"
+        android:label="Сопровождение {title}"
+        tools:layout="@layout/fragment_support">
+        <argument
+            android:name="plan"
+            app:argType="com.example.android.ufitness.models.Plan" />
+        <argument
+            android:name="title"
+            app:argType="string"
+            android:defaultValue="Сопровождение тренировки"/>
     </fragment>
 
 </navigation>
