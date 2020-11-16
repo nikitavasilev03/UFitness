@@ -20,4 +20,9 @@
     <string name="plan_exercises">Выбор упражнений</string>
 
     <string name="save">Сохранить</string>
+    <string name="description">Описание:</string>
+    <string name="next">Следующее</string>
+    <string name="launch">Запуск</string>
+
+    <string name="exercise_template">Упражнение: %s</string>
 </resources>
