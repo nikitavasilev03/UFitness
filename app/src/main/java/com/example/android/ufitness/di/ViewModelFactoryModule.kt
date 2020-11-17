@@ -7,6 +7,7 @@ import com.example.android.ufitness.ui.fragments.exercises.edit.EditExerciseView
 import com.example.android.ufitness.ui.fragments.main.MainFViewModel
 import com.example.android.ufitness.ui.fragments.plans.PlansViewModel
 import com.example.android.ufitness.ui.fragments.plans.edit.EditPlanViewModel
+import com.example.android.ufitness.ui.fragments.support.SupportViewModel
 import com.example.android.ufitness.utils.vm.ViewModelKey
 import com.example.android.ufitness.utils.vm.ViewModelProviderFactory
 import dagger.Binds
@@ -44,4 +45,8 @@ abstract class ViewModelFactoryModule {
     @ViewModelKey(EditExerciseViewModel::class)
     abstract fun bindsEditExerciseViewModel(viewModel: EditExerciseViewModel): ViewModel
 
+    @Binds
+    @IntoMap
+    @ViewModelKey(SupportViewModel::class)
+    abstract fun bindsSupportViewModel(viewModel: SupportViewModel): ViewModel
 }

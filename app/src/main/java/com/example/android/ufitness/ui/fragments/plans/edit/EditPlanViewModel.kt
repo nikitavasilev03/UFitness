@@ -47,8 +47,8 @@ class EditPlanViewModel @Inject constructor(private val dataSource: DataSource) 
                         ExercisePlans(
                             planId = planId!!,
                             exerciseId = item,
-                            isTimeBased = false,
-                            repeatCount = 0
+                            isTimeBased = true,
+                            repeatCount = 10
                         )
                     )
                 }

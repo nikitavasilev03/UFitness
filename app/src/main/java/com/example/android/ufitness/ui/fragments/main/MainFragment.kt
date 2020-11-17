@@ -6,8 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.android.ufitness.MyApplication
 import com.example.android.ufitness.R
+import com.example.android.ufitness.ui.fragments.support.SupportFragment
 import com.example.android.ufitness.models.Plan
 import kotlinx.android.synthetic.main.fragment_main.*
 import javax.inject.Inject
@@ -26,8 +28,8 @@ class MainFragment : Fragment() {
     }
 
     override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_main, container, false)
     }
@@ -48,9 +50,9 @@ class MainFragment : Fragment() {
         viewModel.loadPlans()
     }
 
-    private fun initObservers(){
+    private fun initObservers() {
         viewModel.plansLiveData.observe(viewLifecycleOwner) {
-            if(!it.isNullOrEmpty()){
+            if (!it.isNullOrEmpty()) {
                 plansRecycler.visibility = View.VISIBLE
                 plansAdapter.submit(it)
                 tvHint.visibility = View.GONE
@@ -62,6 +64,12 @@ class MainFragment : Fragment() {
     }
 
     private fun supportClick(plan: Plan) {
-
+        findNavController().navigate(
+            R.id.action_mainFragment_to_supportFragment,
+            Bundle().apply {
+                putParcelable(SupportFragment.PLAN_KEY, plan)
+                putString("title", plan.name)
+            }
+        )
     }
 }
