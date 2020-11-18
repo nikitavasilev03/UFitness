@@ -2,6 +2,7 @@ package com.example.android.ufitness.db.dao
 
 import androidx.room.*
 import com.example.android.ufitness.models.ExercisePlans
+import com.example.android.ufitness.models.Plan
 
 @Dao
 interface ExercisePlansDao {
@@ -11,6 +12,9 @@ interface ExercisePlansDao {
 
     @Query("DELETE FROM exercisePlans")
     suspend fun deleteAll()
+
+    @Query("DELETE FROM exercisePlans WHERE planId = :pId")
+    suspend fun deleteAllByPlan(pId: Int)
 
     @Update
     suspend fun updateItem(item: ExercisePlans)

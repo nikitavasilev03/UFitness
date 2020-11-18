@@ -43,7 +43,6 @@ class EditPlanFragment : Fragment() {
             etPlanName.setText(it.name)
             etPlanPurpose.setText(it.purpose)
         }
-
         exercisesAdapter = EditPlanExercisesAdapter(
             onChangeCheck = viewModel::manageExercise
         )
