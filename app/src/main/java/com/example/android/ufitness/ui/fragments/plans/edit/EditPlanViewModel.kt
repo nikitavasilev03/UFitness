@@ -102,4 +102,14 @@ class EditPlanViewModel @Inject constructor(private val dataSource: DataSource) 
             }
         }
     }
+
+    fun getPlanned(): List<ExerciseSittingAdapter>?{
+        return exercisesLiveData.value?.filter { it.exercisePlan!=null}
+    }
+
+    fun buildString(item: ExerciseSittingAdapter): String{
+        val s = "${item.exercise?.name}."
+        val cond = if (item.exercisePlan?.isTimeBased == true) "Секунд" else "Повторений"
+        return "$s ${item.exercisePlan?.repeatCount} $cond"
+    }
 }
