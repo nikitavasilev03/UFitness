@@ -1,5 +1,6 @@
 package com.example.android.ufitness.ui.fragments.support
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.format.DateUtils
 import androidx.fragment.app.Fragment
@@ -50,20 +51,27 @@ class SupportFragment : Fragment() {
             btnLaunch.visibility = View.GONE
         }
 
-        btnNext.setOnClickListener {
+        btnNext.setOnClickListener { btn ->
             val list = viewModel.expLiveData.value
             list?.let {
                 if (it.isNotEmpty()) {
                     viewModel.popCurrent()
                 } else {
-                    share()
+                    share(btn)
                 }
             }
         }
     }
 
-    private fun share() {
-
+    private fun share(view: View) {
+        val text = viewModel.generateFinishText(view.context)
+        val sendIntent: Intent = Intent().apply {
+            action = Intent.ACTION_SEND
+            putExtra(Intent.EXTRA_TEXT, text)
+            type = "text/plain"
+        }
+        val shareIntent = Intent.createChooser(sendIntent, null)
+        startActivity(shareIntent)
     }
 
     private fun observeLiveData() {
@@ -97,7 +105,8 @@ class SupportFragment : Fragment() {
                     btnLaunch.visibility = View.GONE
                     tvCount.text = "Тренировка завершена"
                 }
-                else -> { }
+                else -> {
+                }
             }
         }
         viewModel.currentTime.observe(viewLifecycleOwner) {

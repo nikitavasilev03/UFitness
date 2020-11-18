@@ -1,5 +1,6 @@
 package com.example.android.ufitness.ui.fragments.plans.edit
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +13,7 @@ import com.example.android.ufitness.MyApplication
 import com.example.android.ufitness.R
 import com.example.android.ufitness.models.Plan
 import com.example.android.ufitness.ui.fragments.plans.edit.measurementDialog.MeasurementDialog
+import com.example.android.ufitness.utils.SharedPreferencesUtils
 import kotlinx.android.synthetic.main.fragment_edit_plan.*
 import javax.inject.Inject
 
@@ -66,6 +68,32 @@ class EditPlanFragment : Fragment() {
                     "Необходимо заполнить все текстовые поля",
                     Toast.LENGTH_LONG
                 ).show()
+            }
+        }
+
+        btnShare.setOnClickListener {
+            val name = etPlanName.text.toString()
+            if (name.isBlank()) {
+                Toast.makeText(
+                    view.context,
+                    "Необходимо заполнить все текстовые поля",
+                    Toast.LENGTH_LONG
+                ).show()
+            } else {
+                val info =
+                    SharedPreferencesUtils.getString(view.context, SharedPreferencesUtils.INFO_KEY)
+                val planned = viewModel.getPlanned()
+                var t = "$info составил(а) тренировку $name"
+                planned?.let {
+                    it.forEach { item-> t+="\n ${viewModel.buildString(item)}" }
+                }
+                val sendIntent: Intent = Intent().apply {
+                    action = Intent.ACTION_SEND
+                    putExtra(Intent.EXTRA_TEXT, t)
+                    type = "text/plain"
+                }
+                val shareIntent = Intent.createChooser(sendIntent, null)
+                startActivity(shareIntent)
             }
         }
         observeLiveData()

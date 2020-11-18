@@ -1,5 +1,6 @@
 package com.example.android.ufitness.ui.fragments.support
 
+import android.content.Context
 import android.os.CountDownTimer
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -8,6 +9,7 @@ import com.example.android.ufitness.models.Exercise
 import com.example.android.ufitness.models.ExercisePlans
 import com.example.android.ufitness.models.Plan
 import com.example.android.ufitness.utils.DataSource
+import com.example.android.ufitness.utils.SharedPreferencesUtils
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -69,6 +71,12 @@ class SupportViewModel @Inject constructor(val dataSource: DataSource) : ViewMod
             expLiveData.value = new
             if (new.isEmpty()) stateLiveData.value = State.FINISH
         }
+    }
+
+    fun generateFinishText(context: Context): String{
+        val name = SharedPreferencesUtils.getString(context,SharedPreferencesUtils.INFO_KEY)
+        val planName = plan?.name.toString()
+        return "$name завершил(а) тренировку $planName"
     }
 
     enum class State {
