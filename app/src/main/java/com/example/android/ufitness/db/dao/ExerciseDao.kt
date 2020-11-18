@@ -20,4 +20,7 @@ interface ExerciseDao {
 
     @Update
     suspend fun updateExercise(exercise: Exercise)
+
+    @Query("SELECT * FROM exercises WHERE id=:id")
+    suspend fun getExerciseById(id:Int): List<Exercise>
 }

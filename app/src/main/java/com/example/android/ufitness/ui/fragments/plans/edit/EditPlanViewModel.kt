@@ -39,28 +39,27 @@ class EditPlanViewModel @Inject constructor(private val dataSource: DataSource) 
     fun managePlan(plan: Plan?, name: String, purpose: String) = viewModelScope.launch {
         if (plan == null) {
             insertNewPlan(Plan(name = name, purpose = purpose))
+            planId = planDao.getPlanIdByName(name)[0]
+            planId?.let {
+                val exercisePlans = mutableListOf<ExercisePlans>()
+                selectedExercises.forEach { item ->
+                    exercisePlans.add(
+                        ExercisePlans(
+                            planId = planId!!,
+                            exerciseId = item,
+                            isTimeBased = true,
+                            repeatCount = 10
+                        )
+                    )
+                }
+                exercisePlansDao.insert(exercisePlans)
+            }
+            editCompleteLiveData.value = true
         } else {
             updatePlan(plan.copy(name = name, purpose = purpose))
+            editCompleteLiveData.value = true
             exercisePlansDao.deleteAllByPlan(plan.id!!)
         }
-
-        planId = planDao.getPlanIdByName(name)[0]
-        planId?.let {
-            val exercisePlans = mutableListOf<ExercisePlans>()
-            selectedExercises.forEach { item ->
-                exercisePlans.add(
-                    ExercisePlans(
-                        planId = planId!!,
-                        exerciseId = item,
-                        isTimeBased = false,
-                        repeatCount = 0
-                    )
-                )
-            }
-            exercisePlansDao.insert(exercisePlans)
-        }
-
-        editCompleteLiveData.value = true
     }
 
     fun fetchData() = viewModelScope.launch {
