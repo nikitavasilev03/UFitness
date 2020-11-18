@@ -22,6 +22,9 @@ interface ExercisePlansDao {
     @Delete
     suspend fun deleteItem(item: ExercisePlans)
 
-    @Query("SELECT * FROM exercisePlans WHERE planId=:planId")
+    @Query("SELECT * FROM exercisePlans WHERE planId = :planId")
     suspend fun getItemsForPlanId(planId: Int): List<ExercisePlans>
+
+    @Query("SELECT * FROM exercisePlans WHERE planId = :planId and exerciseId = :exerciseId")
+    suspend fun getItemsForPlanAndExerciseId(planId: Int, exerciseId: Int): List<ExercisePlans>
 }

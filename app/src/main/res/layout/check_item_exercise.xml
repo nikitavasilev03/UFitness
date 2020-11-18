@@ -31,20 +31,47 @@
             android:layout_marginStart="8dp"
             android:maxLines="1"
             android:layout_marginEnd="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tvMeasurement"
             app:layout_constraintStart_toEndOf="@id/cbCheckSelect"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
         <TextView
-            android:id="@+id/tvExerciseDesc"
+            android:id="@+id/tvMeasurement"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="4dp"
+            android:maxLines="1"
+            app:layout_constraintEnd_toStartOf="@id/ivUpdate"
+            app:layout_constraintStart_toEndOf="@id/tvExerciseTitle"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/tvCount"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="2dp"
+            android:maxLines="1"
+            app:layout_constraintEnd_toStartOf="@id/ivUpdate"
+            app:layout_constraintStart_toEndOf="@id/tvExerciseTitle"
+            app:layout_constraintTop_toBottomOf="@id/tvMeasurement"/>
+
+        <ImageView
+            android:id="@+id/ivUpdate"
+            android:layout_width="33dp"
+            android:layout_height="33dp"
+            android:src="@drawable/ic_baseline_autorenew_24"
             android:layout_marginEnd="8dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/cbCheckSelect"
-            app:layout_constraintTop_toBottomOf="@id/tvExerciseTitle" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

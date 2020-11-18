@@ -16,7 +16,7 @@ class EditPlanViewModel @Inject constructor(private val dataSource: DataSource) 
     private val exerciseDao = dataSource.database.exerciseDao()
     private val exercisePlansDao = dataSource.database.exercisePlansDao()
 
-    val exercisesLiveData = MutableLiveData<List<Exercise>>()
+    val exercisesLiveData = MutableLiveData<List<ExerciseSittingAdapter>>()
     val editCompleteLiveData = MutableLiveData(false)
 
     private val selectedExercises: MutableList<Int> = mutableListOf()
@@ -24,8 +24,32 @@ class EditPlanViewModel @Inject constructor(private val dataSource: DataSource) 
 
     init {
         viewModelScope.launch {
-            exercisesLiveData.value = exerciseDao.getAll()
+
         }
+    }
+
+    fun setupPlan(plan: Plan?) = viewModelScope.launch{
+
+        val exercises = exerciseDao.getAll()
+        val esa = mutableListOf<ExerciseSittingAdapter>()
+        exercises.forEach{ item ->
+            esa.add(
+                ExerciseSittingAdapter(
+                    exercise = item,
+                    exercisePlan = null
+                )
+            )
+        }
+
+        plan?.let {
+            esa.forEach { item ->
+                val exercisesPlan = exercisePlansDao.getItemsForPlanAndExerciseId(plan.id!!, item.exercise!!.id!!)
+                if (exercisesPlan.count() > 0)
+                    item.exercisePlan = exercisesPlan[0]
+            }
+        }
+
+        exercisesLiveData.value = esa
     }
 
     private suspend fun insertNewPlan(plan: Plan) {
@@ -40,39 +64,42 @@ class EditPlanViewModel @Inject constructor(private val dataSource: DataSource) 
         if (plan == null) {
             insertNewPlan(Plan(name = name, purpose = purpose))
             planId = planDao.getPlanIdByName(name)[0]
-            planId?.let {
-                val exercisePlans = mutableListOf<ExercisePlans>()
-                selectedExercises.forEach { item ->
-                    exercisePlans.add(
-                        ExercisePlans(
-                            planId = planId!!,
-                            exerciseId = item,
-                            isTimeBased = true,
-                            repeatCount = 10
-                        )
-                    )
-                }
-                exercisePlansDao.insert(exercisePlans)
-            }
-            editCompleteLiveData.value = true
         } else {
+            planId = plan.id!!
             updatePlan(plan.copy(name = name, purpose = purpose))
-            editCompleteLiveData.value = true
-            exercisePlansDao.deleteAllByPlan(plan.id!!)
         }
+
+        val exercisePlans = mutableListOf<ExercisePlans>()
+        exercisesLiveData.value?.forEach { item ->
+            item.exercisePlan?.let {
+                exercisePlans.add(
+                    ExercisePlans(
+                        planId = planId!!,
+                        exerciseId = it.exerciseId,
+                        isTimeBased = it.isTimeBased,
+                        repeatCount = it.repeatCount
+                    )
+                )
+            }
+        }
+        exercisePlansDao.deleteAllByPlan(planId!!)
+        exercisePlansDao.insert(exercisePlans)
+
+        editCompleteLiveData.value = true
     }
 
-    fun fetchData() = viewModelScope.launch {
-        exercisesLiveData.value = exerciseDao.getAll()
-    }
-
-    fun manageExercise(exercise: Exercise, isChecked: Boolean) {
-        if (exercise.id == null)
-            return
-        val id: Int = exercise.id
-        if (isChecked)
-            selectedExercises.add(id)
-        else
-            selectedExercises.remove(id)
+    fun manageExercise(esa: ExerciseSittingAdapter, isChecked: Boolean) {
+        esa.exercise?.let {
+            if (esa.exercisePlan == null){
+                esa.exercisePlan = ExercisePlans(
+                    planId = 0,
+                    exerciseId = it.id!!,
+                    isTimeBased = false,
+                    repeatCount = 15
+                )
+            } else {
+                esa.exercisePlan = null
+            }
+        }
     }
 }

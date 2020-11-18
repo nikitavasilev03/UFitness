@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.android.ufitness.MyApplication
 import com.example.android.ufitness.R
 import com.example.android.ufitness.models.Plan
+import com.example.android.ufitness.ui.fragments.plans.edit.measurementDialog.MeasurementDialog
 import kotlinx.android.synthetic.main.fragment_edit_plan.*
 import javax.inject.Inject
 
@@ -28,10 +29,12 @@ class EditPlanFragment : Fragment() {
         plan = arguments?.getParcelable(PLAN_KEY)
         (activity?.applicationContext as MyApplication).appComponent.inject(this)
         viewModel = ViewModelProvider(this, providerFactory).get(EditPlanViewModel::class.java)
+        viewModel.setupPlan(plan)
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_edit_plan, container, false)
@@ -39,12 +42,14 @@ class EditPlanFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         plan?.let {
             etPlanName.setText(it.name)
             etPlanPurpose.setText(it.purpose)
         }
         exercisesAdapter = EditPlanExercisesAdapter(
-            onChangeCheck = viewModel::manageExercise
+            onChangeCheck = ::onCheckExercise,
+            onUpdate = ::onUpdateExerciseClicked
         )
         exercisesCheckRecycler.apply {
             adapter = exercisesAdapter
@@ -66,11 +71,28 @@ class EditPlanFragment : Fragment() {
         observeLiveData()
     }
 
-    override fun onResume() {
-        super.onResume()
-        viewModel.fetchData()
+    private fun onCheckExercise(esa: ExerciseSittingAdapter, isChecked: Boolean) {
+        viewModel.manageExercise(esa, isChecked)
+        exercisesAdapter.notifyDataSetChanged()
     }
 
+    private fun onUpdateExerciseClicked(esa: ExerciseSittingAdapter) {
+        esa.exercisePlan?.let {
+            val dialog = MeasurementDialog(
+                esa,
+                ::onUpdateExerciseComplete
+            )
+            dialog.show(parentFragmentManager, "MeasurementDialog")
+        }
+    }
+
+    private fun onUpdateExerciseComplete(esa: ExerciseSittingAdapter) {
+        exercisesAdapter.notifyDataSetChanged()
+    }
+
+    override fun onResume() {
+        super.onResume()
+    }
 
     private fun observeLiveData() {
         viewModel.editCompleteLiveData.observe(viewLifecycleOwner) {
@@ -81,10 +103,8 @@ class EditPlanFragment : Fragment() {
             if (!it.isNullOrEmpty()) {
                 exercisesCheckRecycler.visibility = View.VISIBLE
                 exercisesAdapter.submit(it)
-                //tvHint.visibility = View.GONE
             } else {
                 exercisesCheckRecycler.visibility = View.GONE
-                //tvHint.visibility = View.VISIBLE
             }
         }
     }
