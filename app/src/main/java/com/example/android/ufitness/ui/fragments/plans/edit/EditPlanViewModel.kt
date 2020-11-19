@@ -18,6 +18,7 @@ class EditPlanViewModel @Inject constructor(private val dataSource: DataSource) 
 
     val exercisesLiveData = MutableLiveData<List<ExerciseSittingAdapter>>()
     val editCompleteLiveData = MutableLiveData(false)
+    var countExercisePlans: Int = 0
 
     private val selectedExercises: MutableList<Int> = mutableListOf()
     private var planId: Int? = null
@@ -44,7 +45,8 @@ class EditPlanViewModel @Inject constructor(private val dataSource: DataSource) 
         plan?.let {
             esa.forEach { item ->
                 val exercisesPlan = exercisePlansDao.getItemsForPlanAndExerciseId(plan.id!!, item.exercise!!.id!!)
-                if (exercisesPlan.count() > 0)
+                countExercisePlans = exercisesPlan.count()
+                if (countExercisePlans > 0)
                     item.exercisePlan = exercisesPlan[0]
             }
         }
@@ -97,8 +99,10 @@ class EditPlanViewModel @Inject constructor(private val dataSource: DataSource) 
                     isTimeBased = false,
                     repeatCount = 15
                 )
+                countExercisePlans++
             } else {
                 esa.exercisePlan = null
+                countExercisePlans--
             }
         }
     }

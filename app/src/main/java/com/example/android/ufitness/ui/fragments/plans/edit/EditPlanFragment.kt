@@ -58,16 +58,24 @@ class EditPlanFragment : Fragment() {
         }
 
         btnPlanSave.setOnClickListener {
-            val name = etPlanName.text.toString()
-            val purpose = etPlanPurpose.text.toString()
-            if (!name.isBlank() || !purpose.isBlank()) {
-                viewModel.managePlan(plan, name, purpose)
-            } else {
+            if (viewModel.countExercisePlans == 0) {
                 Toast.makeText(
                     view.context,
-                    "Необходимо заполнить все текстовые поля",
+                    "Необходимо выбрать хотя бы одно упражнение",
                     Toast.LENGTH_LONG
                 ).show()
+            } else {
+                val name = etPlanName.text.toString()
+                val purpose = etPlanPurpose.text.toString()
+                if (!name.isBlank() || !purpose.isBlank()) {
+                    viewModel.managePlan(plan, name, purpose)
+                } else {
+                    Toast.makeText(
+                        view.context,
+                        "Необходимо заполнить все текстовые поля",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
             }
         }
 
