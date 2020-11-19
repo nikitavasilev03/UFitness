@@ -107,9 +107,9 @@ class EditPlanFragment : Fragment() {
         observeLiveData()
     }
 
-    private fun onCheckExercise(esa: ExerciseSittingAdapter, isChecked: Boolean) {
+    private fun onCheckExercise(esa: ExerciseSittingAdapter, isChecked: Boolean, pos: Int) {
         viewModel.manageExercise(esa, isChecked)
-        exercisesAdapter.notifyDataSetChanged()
+        exercisesAdapter.notifyItemChanged(pos)
     }
 
     private fun onUpdateExerciseClicked(esa: ExerciseSittingAdapter) {

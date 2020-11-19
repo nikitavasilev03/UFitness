@@ -9,7 +9,7 @@ import kotlinx.android.synthetic.main.check_item_exercise.view.*
 import kotlinx.android.synthetic.main.check_item_exercise.view.ivUpdate
 
 class EditPlanExercisesAdapter(
-    private val onChangeCheck: (model: ExerciseSittingAdapter, checked: Boolean) -> Unit,
+    private val onChangeCheck: (model: ExerciseSittingAdapter, checked: Boolean, pos: Int) -> Unit,
     private val onUpdate: (model: ExerciseSittingAdapter) -> Unit
 ) : RecyclerAdapter<ExerciseSittingAdapter>() {
 
@@ -22,6 +22,7 @@ class EditPlanExercisesAdapter(
                 model.exercise?.let {
                     view.tvExerciseTitle.text = it.name
                 }
+                view.cbCheckSelect.setOnCheckedChangeListener(null)
                 if (model.exercisePlan == null)
                 {
                     view.cbCheckSelect.isChecked = false
@@ -34,7 +35,7 @@ class EditPlanExercisesAdapter(
                     view.tvCount.text = model.exercisePlan!!.repeatCount.toString() + if (model.exercisePlan!!.isTimeBased) " секунд" else " раз"
                     view.ivUpdate.visibility = View.VISIBLE
                 }
-                view.cbCheckSelect.setOnCheckedChangeListener { _, isChecked -> onChangeCheck(model, isChecked) }
+                view.cbCheckSelect.setOnCheckedChangeListener { _, isChecked -> onChangeCheck(model, isChecked, position) }
                 view.ivUpdate.setOnClickListener {
                     onUpdate.invoke(model)
                 }
