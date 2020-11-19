@@ -45,9 +45,10 @@ class EditPlanViewModel @Inject constructor(private val dataSource: DataSource) 
         plan?.let {
             esa.forEach { item ->
                 val exercisesPlan = exercisePlansDao.getItemsForPlanAndExerciseId(plan.id!!, item.exercise!!.id!!)
-                countExercisePlans = exercisesPlan.count()
-                if (countExercisePlans > 0)
+                if (exercisesPlan.count() > 0){
                     item.exercisePlan = exercisesPlan[0]
+                    countExercisePlans++
+                }
             }
         }
 
