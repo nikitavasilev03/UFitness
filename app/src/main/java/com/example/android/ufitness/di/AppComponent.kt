@@ -1,5 +1,6 @@
 package com.example.android.ufitness.di
 
+import com.example.android.ufitness.ui.MainActivity
 import com.example.android.ufitness.ui.fragments.support.SupportFragment
 import com.example.android.ufitness.ui.fragments.exercises.ExercisesFragment
 import com.example.android.ufitness.ui.fragments.exercises.edit.EditExerciseFragment
@@ -19,4 +20,5 @@ interface AppComponent {
     fun inject(fragment: ExercisesFragment)
     fun inject(fragment: EditExerciseFragment)
     fun inject(fragment: SupportFragment)
+    fun inject(activity: MainActivity)
 }
