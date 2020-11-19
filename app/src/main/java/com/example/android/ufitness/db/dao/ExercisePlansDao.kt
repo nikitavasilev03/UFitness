@@ -16,6 +16,9 @@ interface ExercisePlansDao {
     @Query("DELETE FROM exercisePlans WHERE planId = :pId")
     suspend fun deleteAllByPlan(pId: Int)
 
+    @Query("DELETE FROM exercisePlans WHERE exerciseId = :exerciseId")
+    suspend fun deleteAllByExercise(exerciseId: Int)
+
     @Update
     suspend fun updateItem(item: ExercisePlans)
 
